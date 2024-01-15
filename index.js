@@ -35,6 +35,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+app.get("/",(req,res) => res.send('hello this is backend of the blog project'));
+
 app.post("/upload", upload.single("file"), (req, res) => {
 console.log('Image Uploading Started');
 console.log(req.body.filePath);
