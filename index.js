@@ -58,5 +58,5 @@ app.get('/', (req, res) => {
 });
 
 // Serve Static Files 
-app.use('/', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 module.exports = app
