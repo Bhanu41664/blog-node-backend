@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors =  require('cors');
-
+const path = require('path');
 const authRoute = require("./rootes/auth");
 const userRoute = require("./rootes/Users");
 const postRoute = require("./rootes/Posts");
@@ -35,7 +35,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-app.get("/",(req,res) => res.send('hello this is backend of the blog project'));
 
 app.post("/upload", upload.single("file"), (req, res) => {
 console.log('Image Uploading Started');
@@ -53,3 +52,11 @@ app.use("/api/question",CategoriesRoute);
 app.listen(process.env.PORT, () => {
   console.log("backend is running @ port : "+process.env.PORT);
 });
+
+app.get('/', (req, res) => {
+    res.send('Hello 👋')
+});
+
+// Serve Static Files 
+app.use('/', express.static(path.join(__dirname, 'images')));
+module.exports = app
